@@ -47,14 +47,49 @@ void insert_node(node *root, int val){
 		temp = new_node(val);
 	}
 	else{
-		if((prev->parent)->lptr==prev){
-			uncle = (prev->parent)->rptr;	
+		grand = prev->parent;
+		if(grand->lptr==prev){
+			uncle = grand->rptr;	
+			dir = 0;
 		}
 		else{
-			uncle = (prev->parent)->lptr;
+			uncle = grand->lptr;
+			dir = 1;
 		}
-		if(uncle->color==0){
-			
+		if(uncle->color==1){
+			//uncle is red
+			if(dir==0){
+				if(val<prev->data){
+					
+				}
+				else{
+
+				}
+			}
+			if(dir==1){
+				if(val<prev->data){
+
+				}
+				else{
+
+				}
+			}
+		}
+		else{
+			//uncle is also red
+			if(prev->data<val){
+				prev->lptr=new_node(val);
+			}
+			else{
+				prev->rptr=new_node(val);
+			}
+			grand = prev->parent;
+			(grand->rptr)->color=1;
+			(grand->lptr)->color=1;
+			if(grand->color == 1){
+				grand->color=0;
+				
+			}
 		}
 	}
 }
